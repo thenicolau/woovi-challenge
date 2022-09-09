@@ -1,14 +1,12 @@
-import mongoose from 'mongoose';
-
-const URI = process.env.MONGO_URI || 'mongodb://gustavo:123@localhost:27017/'
+import mongoose from 'mongoose'
+import settings from '../config/settings'
+const URI = settings.MONGO_URI
 const initDB = () => {
-
-  mongoose.connect(URI);
+  mongoose.connect(URI)
 
   mongoose.connection.once('open', () => {
-    console.log('connected to database');
-  });
-
+    console.log('connected to database')
+  })
 }
 
-export default initDB;
+export default initDB
