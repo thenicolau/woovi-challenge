@@ -4,7 +4,6 @@ import { GraphQLString } from 'graphql'
 import { sign } from 'jsonwebtoken'
 import User from '../../models/User'
 import { LoginTypeGQL, UserCreateTypeGQL } from './UserTypes'
-
 const mutations = {
   signup: {
     type: UserCreateTypeGQL,
@@ -38,7 +37,6 @@ const mutations = {
     },
     async resolve(_root: unknown, args: { email: string; password: string }) {
       const user = await User.findOne({ email: args.email })
-
       if (!user) throw new Error('User not found')
 
       const valid = await compare(args.password, user.password)
@@ -46,7 +44,6 @@ const mutations = {
       if (!valid) throw new Error('email or password invalid')
 
       const token = sign({ userId: user.id }, settings.JWT_SECRET)
-
       return {
         token,
       }

@@ -9,6 +9,7 @@ import {
 } from 'graphql-helix'
 import Router from '@koa/router'
 import schema from './resources/schema'
+import { contextFactory } from './services/context'
 
 const app = new Koa()
 
@@ -34,6 +35,7 @@ app.use(async ctx => {
       operationName,
       query,
       variables,
+      contextFactory: () => contextFactory(ctx),
       request,
       schema,
     })

@@ -11,6 +11,7 @@ const PixKeySchema = new Schema({
     type: String,
     enum: ['DOCUMENT', 'EMAIL', 'PHONE_NUMBER', 'RANDOM'],
   },
+  key: String,
 })
 
 export default mongoose.model('pix_keys', PixKeySchema)
